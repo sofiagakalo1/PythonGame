@@ -29,7 +29,7 @@ bg_move = 3
 IMAGE_PATH = "Goose"
 PLAYER_IMAGES = os.listdir(IMAGE_PATH)
 
-player_size = (20, 20)
+# player_size = (20, 20)
 # pygame.Surface(player_size)
 player = pygame.image.load('player.png').convert_alpha()
 # player.fill(COLOR_BLACK)
@@ -49,7 +49,8 @@ def create_enemy():
     # pygame.Surface(enemy_size)
     enemy = pygame.image.load('enemy.png').convert_alpha()
     # enemy.fill(COLOR_BLUE)
-    enemy_rect = pygame.Rect(WIDTH, random.randint(0, HEIGHT-200), *enemy_size)
+    enemy_rect = pygame.Rect(WIDTH, random.randint(
+        0, HEIGHT-100), *enemy.get_size())
     enemy_move = [random.randint(-8, -4), 0]
     return [enemy, enemy_rect, enemy_move]
 
@@ -62,7 +63,7 @@ def create_bonus():
     bonus = pygame.image.load('bonus.png').convert_alpha()
     # bonus.fill(COLOR_RED)
     # bonus_rect = pygame.Rect(x, y, *bonus.get_size())
-    bonus_rect = pygame.Rect(random.randint(0, WIDTH-200), 0, *bonus_size)
+    bonus_rect = pygame.Rect(random.randint(0, WIDTH-100), -bonus.get_height(), *bonus.get_size())
     bonus_move = [0, random.randint(4, 8)]
     return [bonus, bonus_rect, bonus_move]
 
@@ -144,8 +145,7 @@ while playing:
             score += 1
             bonuses.pop(bonuses.index(bonus))
 
-    main_display.blit(FONT.render(str(score), True,
-                      COLOR_BLACK), (WIDTH-50, 20))
+    main_display.blit(FONT.render(str(score), True, COLOR_BLACK), (WIDTH-50, 20))
     main_display.blit(player, player_rect)
 
     # print(len(bonuses))
