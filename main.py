@@ -47,6 +47,7 @@ def create_bonus():
     bonus_size = (50, 50)
     bonus = pygame.Surface(bonus_size)
     bonus.fill(COLOR_RED)
+    # bonus_rect = pygame.Rect(x, y, *bonus.get_size())
     bonus_rect = pygame.Rect(random.randint(0, WIDTH), 0, *bonus_size)
     bonus_move = [0, random.randint(1, 6)]
     return [bonus, bonus_rect, bonus_move]
@@ -82,10 +83,10 @@ while playing:
     if keys[K_RIGHT] and player_rect.right < WIDTH:
         player_rect = player_rect.move(player_move_right)
 
-    if keys[K_UP] and player_rect.top < HEIGHT:
+    if keys[K_UP] and player_rect.top >0:
         player_rect = player_rect.move(player_move_up)
 
-    if keys[K_LEFT] and player_rect.left < WIDTH:
+    if keys[K_LEFT] and player_rect.left >0:
         player_rect = player_rect.move(player_move_left)
 
 # showing enemies on screen
@@ -101,6 +102,8 @@ while playing:
 
     main_display.blit(player, player_rect)
 
+    # print(len(bonuses))
+
     pygame.display.flip()
 
 # clearing massive depends on actual ENEMIES on screen
@@ -110,7 +113,7 @@ while playing:
 
 # clearing massive depends on actual BONUSES on screen
     for bonus in bonuses:
-        if bonus[1].left < 0:
+        if bonus[1].bottom > HEIGHT:
             bonuses.pop(bonuses.index(bonus))
 
 # python3 main.py
