@@ -19,7 +19,8 @@ COLOR_RED = (255, 0, 0)
 
 main_display = pygame.display.set_mode((WIDTH, HEIGHT))
 
-bg = pygame.transform.scale(pygame.image.load('background.png'), (WIDTH, HEIGHT))
+bg = pygame.transform.scale(pygame.image.load(
+    'background.png'), (WIDTH, HEIGHT))
 bg_X1 = 0
 # bg2 will be just after bg1
 bg_X2 = bg.get_width()
@@ -41,6 +42,8 @@ player_move_up = [0, -4]
 player_move_left = [-4, 0]
 
 # creating ENEMY
+
+
 def create_enemy():
     enemy_size = (30, 30)
     # pygame.Surface(enemy_size)
@@ -51,6 +54,8 @@ def create_enemy():
     return [enemy, enemy_rect, enemy_move]
 
 # creating BONUS
+
+
 def create_bonus():
     bonus_size = (30, 30)
     # pygame.Surface(bonus_size)
@@ -139,7 +144,8 @@ while playing:
             score += 1
             bonuses.pop(bonuses.index(bonus))
 
-    main_display.blit(FONT.render(str(score), True,COLOR_BLACK), (WIDTH-50, 20))
+    main_display.blit(FONT.render(str(score), True,
+                      COLOR_BLACK), (WIDTH-50, 20))
     main_display.blit(player, player_rect)
 
     # print(len(bonuses))
